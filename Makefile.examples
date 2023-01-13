@@ -369,6 +369,9 @@ test-amd64-files test-amd64-files-lite: $(UNSATURATED_SOLINAS) $(WORD_BY_WORD_MO
 test-amd64-files: test-amd64-files-print-report test-amd64-files-status
 
 only-test-amd64-files: only-test-amd64-files-print-report only-test-amd64-files-status
+	$(SOLINAS_REDUCTION) --no-primitives --no-wide-int --shiftr-avoid-uint1 --output /dev/null --output-asm /dev/null 'curve25519_solinas' '64' '2^255 - 19' mul2 --hints-file ./fiat-amd64-2/solinas_mul2_work.asm
+	$(SOLINAS_REDUCTION) --no-primitives --no-wide-int --shiftr-avoid-uint1 --output /dev/null --output-asm /dev/null 'curve25519_solinas' '64' '2^255 - 19' mul2 --hints-file ./fiat-amd64-2/solinas_mul2_not_work.asm
+	$(SOLINAS_REDUCTION) --no-primitives --no-wide-int --shiftr-avoid-uint1 --output /dev/null --output-asm /dev/null 'curve25519_solinas' '64' '2^255 - 19' mul2 --hints-file ./fiat-amd64-2/solinas_mul2_original.asm
 
 test-amd64-files-lite: test-amd64-files-lite-print-report test-amd64-files-lite-status
 
